@@ -12,8 +12,8 @@ public class Main {
 
         for (int i = 0; i < 3; i++) {
             int carNumber = i + 1;
-            String carName = "";
-            int carSpeed = 0;
+            String carName;
+            int carSpeed;
 
             System.out.println("Введите название машины №" + carNumber + ":");
             carName = scanner.next();
