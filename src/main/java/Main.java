@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -18,17 +19,19 @@ public class Main {
             System.out.println("Введите название машины №" + carNumber + ":");
             carName = scanner.next();
 
-
-
             while (true) {
                 System.out.println("Введите скорость машины №" + carNumber + ":");
-                carSpeed = scanner.nextInt();
-
-                if (carSpeed > 250 || carSpeed < 0) {
-                    System.out.println("Неверная скорость машины, попробуйте еще раз. " +
-                            "Значение от 0 до 250.");
-                } else {
-                    break;
+                try {
+                    carSpeed = scanner.nextInt();
+                    if (carSpeed > 250 || carSpeed < 0) {
+                        System.out.println("Неверная скорость машины, попробуйте еще раз. " +
+                                "Значение от 0 до 250.");
+                    } else {
+                        break;
+                    }
+                } catch (InputMismatchException ex) {
+                    System.out.println("Нужно ввести число.");
+                    scanner.nextLine();
                 }
             }
 
@@ -36,6 +39,6 @@ public class Main {
             race.calculateDistance(car);
         }
 
-        System.out.println("Самая быстрая машина: " + race.winnerName);
+        System.out.println("Самая быстрая машина: " + race.getWinnerName());
     }
 }

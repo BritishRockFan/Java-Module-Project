@@ -1,8 +1,12 @@
 public class Race {
-    String winnerName = "";
-    int distance = 0;
-    int winnerDistance = 0;
-    int time = 24;
+    private String winnerName = "";
+    private int distance = 0;
+    private int winnerDistance = 0;
+    private int time = 24;
+
+    public String getWinnerName() {
+        return winnerName;
+    }
 
     public void calculateDistance(Car car) {
 
