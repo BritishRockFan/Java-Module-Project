@@ -1,8 +1,44 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
-        // ваш код начнется здесь
-        // вы не должны ограничиваться только классом Main и можете создавать свои классы по необходимости
-        System.out.println("Привет Мир");
+        Race race = new Race();
+        Car car;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите участников:");
+
+
+        for (int i = 0; i < 3; i++) {
+            int carNumber = i + 1;
+            String carName;
+            int carSpeed;
+
+            System.out.println("Введите название машины №" + carNumber + ":");
+            carName = scanner.next();
+
+            while (true) {
+                System.out.println("Введите скорость машины №" + carNumber + ":");
+                try {
+                    carSpeed = scanner.nextInt();
+                    if (carSpeed > 250 || carSpeed < 0) {
+                        System.out.println("Неверная скорость машины, попробуйте еще раз. " +
+                                "Значение от 0 до 250.");
+                    } else {
+                        break;
+                    }
+                } catch (InputMismatchException ex) {
+                    System.out.println("Нужно ввести число.");
+                    scanner.nextLine();
+                }
+            }
+
+            car = new Car(carName, carSpeed);
+            race.calculateDistance(car);
+        }
+
+        System.out.println("Самая быстрая машина: " + race.getWinnerName());
     }
 }
